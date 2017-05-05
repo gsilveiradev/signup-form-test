@@ -1,0 +1,69 @@
+version: '2'
+
+services:
+
+    applications:
+        image: tianon/true
+        volumes:
+            - ./:/var/www
+
+    workspace:
+        build:
+            context: ./env/workspace
+            args:
+                - PUID=1000
+                - PGID=1000
+                - TZ=UTC
+        volumes_from:
+            - applications
+        extra_hosts:
+            - "dockerhost:10.0.75.1"
+        ports:
+           - "2222:22"
+        tty: true
+
+    php-fpm:
+        build:
+            context: ./env/php-fpm
+            dockerfile: Dockerfile
+        volumes_from:
+            - applications
+        expose:
+            - "9000"
+        links:
+            - workspace
+        extra_hosts:
+            - "dockerhost:10.0.75.1"
+        environment:
+            - PHP_IDE_CONFIG=serverName=signuptest
+
+    nginx:
+        build:
+            context: ./env/nginx
+            args:
+                - PHP_UPSTREAM=php-fpm
+        volumes_from:
+            - applications
+        volumes:
+            - ./env/logs/nginx/:/var/log/nginx
+            - ./env/nginx/sites/:/etc/nginx/sites-available
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php-fpm
+
+    postgres:
+        build: ./env/postgres
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: signuptest
+            POSTGRES_USER: signuptest
+            POSTGRES_PASSWORD: signuptest
+
+volumes:
+    postgres:
+        driver: "local"
