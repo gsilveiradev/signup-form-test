@@ -51,6 +51,9 @@ Application.Controller.Home = (function($) {
         $('body').on('blur', 'input[name=password], input[name=password_confirm]', function () {
             $('.password_strength').hide();
         });
+
+        // Set the form action URL
+        $('form[name=signup]').attr('action', Application.vars.api_url + 'signup');
     }
 
     return {

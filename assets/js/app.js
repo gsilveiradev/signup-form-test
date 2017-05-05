@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
     Application.vars  = {
 
         //api_url     : 'http://localhost/api/',
-        api_url     : 'http://192.168.150.100/api/',
+        api_url     : 'http://192.168.150.100/',
         controller  : $('meta[name=controller]').attr('content'),
         method      : $('meta[name=method]').attr('content'), 
         directory   : $('meta[name=directory]').attr('content')

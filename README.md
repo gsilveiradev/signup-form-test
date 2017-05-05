@@ -50,9 +50,11 @@ I use [Docker](https://www.docker.com) to administer this test.
 
 ### API Endpoints
 
-| Method      | URL                 | Description            |
-| ---         | ---                 | ---                    |
-| GET         | `/api/signup`       | Create a signup        |
+| Method      | URL                     | Description            |
+| ---         | ---                     | ---                    |
+| GET         | `/`                     | Hello world!           |
+| POST        | `/signup`               | Create a signup        |
+| POST        | `/signup/verify_email`  | Verify email usage     |
 
 ---
 
@@ -66,6 +68,6 @@ docker-compose exec workspace bash -c 'vendor/bin/phpcs resources src --standard
 
 ## Test
 
-Just go to ```http://localhost``` or ```http://127.0.0.1```.
+Just open the ```index.html``` on your browser.
 
 Thank you!

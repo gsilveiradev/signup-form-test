@@ -1,0 +1,28 @@
+{
+    "name": "Signup Form Test API",
+    "description": "This is a OLX Developer Test",
+    "keywords": ["olx", "rest", "api", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guilherme Silveira da Silva",
+            "email": "guissilveira@gmail.com",
+            "role": "Future Developer @ OLX"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "symfony/http-foundation": "^3.2",
+        "symfony/routing": "^3.2",
+        "doctrine/orm": "2.4.*",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "~2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "SignupFormTest\\": "api/src/"
+        }
+    }
+}
