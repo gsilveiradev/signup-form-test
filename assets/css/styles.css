@@ -1,0 +1,14 @@
+.container {
+    width: 970px;
+}
+
+input[name=telefone] {
+    padding-left: 47px;
+}
+
+.telefone_area {
+    color: #bbbbbb;
+    left: 27px;
+    position: absolute;
+    top: 7px;
+}
