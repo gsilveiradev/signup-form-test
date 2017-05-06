@@ -3,17 +3,6 @@ Application = {
     Controller: {}
 };
 
-/**
- * Trigger an javascript native alert
- *
- * @param  string str The text to display
- * @return event Alert javascript event
- */
-Application.alert = function(str) {
-
-    alert(str);
-}
-
 jQuery(document).ready(function($) {
     
     // invoca o controlador e o método solicitados
@@ -41,6 +30,9 @@ jQuery(document).ready(function($) {
 
 });
 
+/**
+ * Funcao responsavel por tratar o envio de formularios por Ajax
+ */
 jQuery.fn.ajaxForm = ( function(options) 
 {
     var options = $.extend(
@@ -105,6 +97,9 @@ jQuery.fn.ajaxForm = ( function(options)
     });
 });
 
+/**
+ * Funcao responsavel por calcular a forca da senha
+ */
 jQuery.fn.passwordStrength = ( function(options)
 {
     var options = $.extend(

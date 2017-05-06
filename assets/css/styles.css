@@ -12,3 +12,16 @@ input[name=telefone] {
     position: absolute;
     top: 7px;
 }
+
+.form-group {
+	margin-bottom: 10px;
+}
+
+.form-group .required {
+	color: #FF0000;
+}
+
+.help-block {
+	font-size: 12px;
+	margin-bottom: 0px;
+}

@@ -9,8 +9,10 @@ Application.Controller.Home = (function($) {
         
         // Apply ajaxForm function to make ajax request by default
         $('form[name=signup]').ajaxForm({
-            successCallback : (function() { alert('Obrigado pro se registar.'); })
+            successCallback : (function() { alert('Obrigado por se registar.'); })
         });
+        // Set the form action URL
+        $('form[name=signup]').attr('action', Application.vars.api_url + 'signup');
 
         // Verify the email
         $('body').on('blur', 'input[name=email]', function() {
@@ -79,6 +81,7 @@ Application.Controller.Home = (function($) {
         });
         $('select[name=pais]').trigger('change');
 
+        // Verify the password strength
         $('body').on('focus keyup', 'input[name=password], input[name=password_confirm]', function () {
             // call to the function defined at app.js
             $(this).passwordStrength({
@@ -86,17 +89,12 @@ Application.Controller.Home = (function($) {
                 strengthResult : '.password_strength_result'
             });
         });
-
         $('body').on('blur', 'input[name=password], input[name=password_confirm]', function () {
             $('.password_strength').hide();
         });
-
-        // Set the form action URL
-        $('form[name=signup]').attr('action', Application.vars.api_url + 'signup');
     }
 
     return {
-
         'init'  : init,
         'index' : index
     };
