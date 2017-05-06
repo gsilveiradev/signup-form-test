@@ -10,6 +10,8 @@ The base code to start and more information about this concept can be found here
 
 Open ```assets/js/app.js``` and configure the **api_url** param.
 
+By default I am using a DigitalOcean server IP, where the project is deployed: ```46.101.142.59```.
+
 ## Backend part
 
 ### Prerequsites
@@ -27,6 +29,11 @@ I use [Docker](https://www.docker.com) to administer this test.
         - dbname: `signuptest`
         - username: `signuptest`
         - password: `signuptest`
+- PHP Libraries at Composer file
+    - symfony/http-foundation
+    - symfony/routing
+    - doctrine/orm
+    - vlucas/phpdotenv
 
 ### Instructions
 
@@ -40,7 +47,7 @@ I use [Docker](https://www.docker.com) to administer this test.
 3) Follow these instructions (if you don't want to run the shell scripts above):
 
 - Copy `config.env.example` to a new file called: `config.env`
-- Configure the ENV params into `config.env` file
+- Configure the ENV params into `config.env` file, if it is necessary
 - Up the docker containers: `docker-compose up -d`
 - Go to workspace container to run install commands: `docker-compose exec workspace bash`
     - Inside `workspace` container, run:
@@ -60,13 +67,13 @@ I use [Docker](https://www.docker.com) to administer this test.
 
 ### Interest stuff
 
-Check for PSR2 standard running:
+Check for PHP PSR2 standard running:
 
 ```
-docker-compose exec workspace bash -c 'vendor/bin/phpcs resources src --standard=PSR2'
+docker-compose exec workspace bash -c 'vendor/bin/phpcs api/src --standard=PSR2'
 ```
 
-## Test
+## Real Test
 
 Just open the ```index.html``` on your browser.
 

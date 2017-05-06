@@ -40,7 +40,9 @@ class SignupController extends Controller
             $result = $query->getResult();
 
             if ($result) {
-                return OutputResponse::send(['email' => ['O email já está em uso, informe outro.']], Response::HTTP_UNPROCESSABLE_ENTITY);
+                return OutputResponse::send([
+                    'email' => ['O email já está em uso, informe outro.']
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
         }
 
@@ -81,7 +83,9 @@ class SignupController extends Controller
         $result = $query->getResult();
 
         if ($result) {
-            return OutputResponse::send(['email' => ['O email já está em uso, informe outro.']], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return OutputResponse::send([
+                'email' => ['O email já está em uso, informe outro.']
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         return OutputResponse::send('Ok.');

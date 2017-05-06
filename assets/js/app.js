@@ -8,8 +8,8 @@ jQuery(document).ready(function($) {
     // invoca o controlador e o método solicitados
     Application.vars  = {
 
-        api_url     : 'http://localhost/',
-        //api_url     : 'http://192.168.150.100/',
+        //api_url     : 'http://localhost/',
+        api_url     : 'http://46.101.142.59/', // DigitalOcean test
         controller  : $('meta[name=controller]').attr('content'),
         method      : $('meta[name=method]').attr('content'), 
         directory   : $('meta[name=directory]').attr('content')
