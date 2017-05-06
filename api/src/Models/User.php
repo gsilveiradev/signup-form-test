@@ -23,25 +23,25 @@ class User
     /** @Column(type="string") **/
     protected $nome;
 
-    /** @Column(type="string", nullable="true") **/
+    /** @Column(type="string", nullable=true) **/
     protected $apelido;
 
-    /** @Column(type="string", nullable="true") **/
+    /** @Column(type="string", nullable=true) **/
     protected $endereco;
 
-    /** @Column(type="string", name="cod_postal", nullable="true") **/
+    /** @Column(type="string", name="cod_postal", nullable=true) **/
     protected $cod_postal;
 
-    /** @Column(type="string", nullable="true") **/
+    /** @Column(type="string", nullable=true) **/
     protected $localidade;
 
-    /** @Column(type="string", nullable="true") **/
+    /** @Column(type="string", nullable=true) **/
     protected $pais;
 
-    /** @Column(type="string", nullable="true") **/
+    /** @Column(type="string", nullable=true) **/
     protected $nif;
 
-    /** @Column(type="string", nullable="true") **/
+    /** @Column(type="string", nullable=true) **/
     protected $telefone;
 
     public function getId()

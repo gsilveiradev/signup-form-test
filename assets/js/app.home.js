@@ -14,7 +14,46 @@ Application.Controller.Home = (function($) {
 
         // Verify the email
         $('body').on('blur', 'input[name=email]', function() {
-            alert('Verificar uso do email.');
+            
+            var form = $('form[name=signup]');
+
+            $.ajax({
+
+                type: 'post',
+                url: Application.vars.api_url + 'signup/verify_email',
+                data: form.serialize(),
+                beforeSend: function() 
+                {
+                    form.find('.has-error').removeClass('has-error');
+                    form.find('.help-block').remove();
+                },
+                success: function(XMLHttpRequest) 
+                {
+                    form.find('.has-error').removeClass('has-error');
+                    form.find('.help-block').remove();
+                },
+                error: function(XMLHttpRequest) 
+                {
+                    if (XMLHttpRequest.status == '422') 
+                    {
+                        var data = $.parseJSON(XMLHttpRequest.responseText);
+
+                        for (var fieldName in data) 
+                        {
+                            for (var i in data[fieldName])
+                            {
+                                $('input[name=' + fieldName + ']').parent().parent().addClass('has-error');
+                                $('input[name=' + fieldName + ']').parent().append('<span class="help-block">' + data[fieldName][i] + '</span>');
+                                //alert(data[fieldName][i]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        alert('Unexpected error!');
+                    }
+                }
+            });
         });
 
         // Apply mask

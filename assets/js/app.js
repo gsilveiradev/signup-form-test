@@ -19,8 +19,8 @@ jQuery(document).ready(function($) {
     // invoca o controlador e o método solicitados
     Application.vars  = {
 
-        //api_url     : 'http://localhost/api/',
-        api_url     : 'http://192.168.150.100/',
+        api_url     : 'http://localhost/',
+        //api_url     : 'http://192.168.150.100/',
         controller  : $('meta[name=controller]').attr('content'),
         method      : $('meta[name=method]').attr('content'), 
         directory   : $('meta[name=directory]').attr('content')
@@ -60,10 +60,13 @@ jQuery.fn.ajaxForm = ( function(options)
             data: form.serialize(),
             beforeSend: function() 
             {
-
+                form.find('.has-error').removeClass('has-error');
+                form.find('.help-block').remove();
             },
             success: function(XMLHttpRequest) 
             {
+                form.find('input[type=text], input[type=password], input[type=email]').val('')
+
                 if (options.successCallback) 
                 {
                     options.successCallback(XMLHttpRequest);
@@ -71,14 +74,18 @@ jQuery.fn.ajaxForm = ( function(options)
             },
             error: function(XMLHttpRequest) 
             {
-                
                 if (XMLHttpRequest.status == '422') 
                 {
                     var data = $.parseJSON(XMLHttpRequest.responseText);
 
-                    for (var fieldName in data.errors) 
+                    for (var fieldName in data) 
                     {
-                        for (var i in data.errors[fieldName]) alert(data.errors[fieldName][i]);
+                        for (var i in data[fieldName])
+                        {
+                            $('input[name=' + fieldName + ']').parent().parent().addClass('has-error');
+                            $('input[name=' + fieldName + ']').parent().append('<span class="help-block">' + data[fieldName][i] + '</span>');
+                            //alert(data[fieldName][i]);
+                        }
                     }
                     
                     if (options.errorCallback) 
